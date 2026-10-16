@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Form</title>
+</head>
+<body style="background-color: lightblue;">
+    <h4>Register Form</h4><hr><br>
+    <label>First Name</label>
+    <input type="text" name="" id="fname" placeholder="First Name"><br><br>
+    <label>Last Name</label>
+    <input type="text" name="" id="lname" placeholder="Last Name"><br><br>
+    <label>Full Name</label>
+    <input type="text" name="" id="fullname" readonly="readonly" placeholder="Full Name"><br><br>
+
+    <label>Gender</label>
+    <select id="gender">
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+    </select><br><br>
+
+    <label>Date of Birth</label>
+    <input type="date" id="dob"> <br><br>
+
+    <label>Address</label>
+    <textarea id="address"></textarea><br><br>
+
+    <label>Subject</label>
+    <select id="subject">
+        <option value="Software">Software</option>
+        <option value="Multi Media">Multi Media</option>
+        <option value="Network">Network</option>
+    </select><br>
+
+    <p>Class Study</p>
+    <label>Online</label>
+    <input type="radio" name="choise" value="online" id="radio1" onclick="SelectRadio('radio1')">
+    <label>On Campus</label>
+    <input type="radio" name="choise" value="oncampus" id="radio2" onclick="SelectRadio('radio2')"><br><br>
+    
+    <button style="background-color: yellow;" onclick="register()">Register</button><br>
+    <h4 id="result">Output about information<br><hr>
+        Full Name = <span id="fullname"></span><br><br>
+        Gender = <span id="gender"></span><br><br> 
+        Date of Birth = <span id="dob"></span><br><br>
+        Address = <span id="address"></span><br><br>
+        Subject = <span id="subject"></span><br><br>
+        Class Study = <span id="classstudy"></span><br><br>
+    </h4>
+</body>
+</html>
+<script>
+    document.addEventListener("input", function () {
+        const fname = document.getElementById("fname").value;
+        const lname = document.getElementById("lname").value;
+        document.getElementById("fullname").value = fname + " " + lname;
+    });
+
+    function SelectRadio(Select) {
+        const radio1 = document.getElementById('radio1');
+        const radio2 = document.getElementById('radio2');
+
+        if (Select == "radio1") {
+            radio2.checked = false;
+        } else if (Select == "radio2") {
+            radio1.checked = false;
+        }
+    }
+    function register() {
+        const fullname = document.getElementById("fullname").value;
+        const gender = document.getElementById("gender").value;
+        const dob = document.getElementById("dob").value;
+        const address = document.getElementById("address").value;
+        const subject = document.getElementById("subject").value;
+        const radio1 = document.getElementById('radio1').value;
+        const radio2 = document.getElementById('radio2').value;
+       
+        document.getElementById("result").innerHTML = "Full Name: " + fullname + "<br>Gender: " + gender + "<br>Date of Birth: " + dob + "<br>Address: " + address + "<br>Subject: " + subject + "<br>Class Study: " + (radio1 ? radio1 : radio2);
+    }
+</script>
